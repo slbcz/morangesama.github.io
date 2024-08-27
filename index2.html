@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于本站 - 橙默撒嘛的部落阁</title>
+    <style>
+        /* 重置默认样式 */
+        body, h1, h2, p, ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* 设置页面背景 */
+        body {
+            background-image: url('https://img.picui.cn/free/2024/08/27/66ccb11c3254b.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between; /* 在页面中均匀分布 */
+        }
+
+        /* 设置header, section, footer的通用样式 */
+        header, section, footer {
+            background-color: rgba(255, 255, 255, 0.7); /* 亚克力背景颜色 */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 亚克力阴影效果 */
+        }
+
+        /* 设置header的样式 */
+        header {
+            text-align: center;
+            margin: 20px; /* 增加header的margin */
+        }
+
+        /* 设置section的样式 */
+        section {
+            flex: 1; /* 使section占据剩余空间 */
+            text-align: center; /* 将内容居中 */
+            margin: 20px; /* 增加section的margin */
+        }
+
+        /* 设置intro部分的样式 */
+        .intro {
+            margin: 0 auto; 
+            max-width: 600px; 
+        }
+
+        /* 设置footer的样式 */
+        footer {
+            background-color: rgba(51, 51, 51, 0.8); /* 设置为黑色背景 */
+            color: #fff; 
+            text-align: center; 
+            padding: 20px; 
+            margin: 20px; /* 增加footer的margin */
+            border-radius: 15px;
+        }
+
+        /* 设置按钮的样式 */
+        .button {
+            display: inline-block; 
+            padding: 10px 20px; 
+            background-color: #75CCF6;
+            color: white; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            position: relative; 
+            overflow: hidden; 
+            transition: background 0.4s; 
+        }
+
+        /* 设置按钮悬停时的样式 */
+        .button:hover {
+            background-color: #6ab5e0; /* 悬停时颜色 */
+        }
+
+        /* 设置水波纹效果的样式 */
+        .button .ripple {
+            position: absolute; 
+            border-radius: 100%; 
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0); 
+            animation: ripple 0.6s linear; 
+            pointer-events: none; 
+        }
+
+        /* 定义水波纹动画 */
+        @keyframes ripple {
+            to {
+                transform: scale(3); 
+                opacity: 0; 
+            }
+        }
+
+        /* 设置超链接列表的样式 */
+        ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>关于本站</h1>
+		<p>真的会有人看这个吗...</p>
+    </header>
+    <section id="about">
+        <div class="intro">
+            <h2>欢迎来到橙默撒嘛的部落阁</h2>
+            <p>本站只是一个个人网站，站长不会写代码，你会发现这两个页面布局没有写好，但没办法，毕竟我真的是个代码盲（嘻嘻）</p>
+			<p>AI拯救代码盲！</p>
+            <p>站长橙默撒嘛，一个画画垃圾、喜欢在B站上发抽象视频的苦逼高三生。</p>
+            <h2>我的所有社媒账号</h2>
+            <p>如果你想的话可以全部关注一遍（）</p>
+            <ul>
+                <li><a href="https://space.bilibili.com/403681442" class="button" onclick="createRipple(event)" target="_blank">哔哩哔哩</a></li>
+                <li><a href="https://www.youtube.com/@morangesama" class="button" onclick="createRipple(event)" target="_blank">YouTube</a></li>
+                <li><a href="https://github.com/slbcz" class="button" onclick="createRipple(event)" target="_blank">Github</a></li>
+                <li><a href="https://x.com/morangesama" class="button" onclick="createRipple(event)" target="_blank">X(NSFW注意)</a></li>
+            </ul>
+            <p>没了</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 橙默撒嘛</p>
+        <p>本站由 Github 强势驱动!</p>
+    </footer>
+    <script>
+        // 创建水波纹效果的函数
+        function createRipple(event) {
+            const button = event.currentTarget; // 获取点击的按钮
+            const ripple = document.createElement('span'); // 创建水波纹元素
+            const rect = button.getBoundingClientRect(); // 获取按钮的位置
+
+            ripple.classList.add('ripple');
+            button.appendChild(ripple);
+
+            // 计算水波纹的位置
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+
+            ripple.addEventListener('animationend', () => {
+                ripple.remove(); // 动画结束后移除水波纹元素
+            });
+        }
+    </script>
+</body>
+</html>
