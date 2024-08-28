@@ -109,16 +109,64 @@
                 flex-direction: column; 
             }
         }
+
+        /* 弹窗样式 */
+        .popup {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(100%);
+            animation: slideUp 0.5s ease-out forwards;
+        }
+
+        .popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .popup .agree-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #75CCF6;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(100%);
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>MOrange's blog</h1>
         <p>是猫猫!</p>
+		<p>在GitHub添加Star到你的列表，及时收到网站更新！</p>
+		<p>No body cares...</p>
         <nav>
             <ul>
                 <li><a href="https://space.bilibili.com/403681442" class="button" onclick="createRipple(event)" target="_blank">哔哩哔哩主页</a></li>
                 <li><a href="about.html" class="button" onclick="createRipple(event)">关于本站</a></li>
+                <li><a href="https://github.com/your-repo" class="button" onclick="createRipple(event)" target="_blank">Star</a></li>
             </ul>
         </nav>
     </header>
@@ -136,6 +184,14 @@
         <p>&copy; 2024 橙默撒嘛</p>
         <p>本站由 Github 强势驱动!</p>
     </footer>
+
+    <!-- 弹窗 -->
+    <div class="popup" id="popup">
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <p>本站并没有使用Cookie，但是根据法律法规我必须要提一嘴（其实只是我觉得做起来很有趣）</p>
+        <button class="agree-btn" onclick="closePopup()">同意</button>
+    </div>
+
     <script>
         // 创建水波纹效果的函数
         function createRipple(event) {
@@ -155,6 +211,21 @@
             ripple.addEventListener('animationend', () => {
                 ripple.remove(); // 动画结束后移除水波纹元素
             });
+        }
+
+        // 关闭弹窗的函数
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.animation = 'slideDown 0.5s ease-out forwards';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 500);
+        }
+
+        // 检查是否是初次进入网页
+        if (!localStorage.getItem('visited')) {
+            document.getElementById('popup').style.display = 'block';
+            localStorage.setItem('visited', 'true');
         }
     </script>
 </body>
